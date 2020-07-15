@@ -77,4 +77,36 @@ public class UserMapperTest {
         //关闭资源
         sqlSession.close();
     }
+
+    @Test
+    public void update(){
+        //获得会话对象
+        SqlSession sqlSession = factory.openSession();
+        //获得Mapper接口的代理对象
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        //查询
+        User user = userMapper.findOne(29);
+        user.setSex("2");
+        user.setAddress("江苏南京");
+        //更新
+        userMapper.update(user);
+        //提交事务
+        sqlSession.commit();
+        //关闭资源
+        sqlSession.close();
+    }
+
+    @Test
+    public void delete(){
+        //获得会话对象
+        SqlSession sqlSession = factory.openSession();
+        //获得Mapper接口的代理对象
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        //删除
+        userMapper.delete(28);
+        //提交事务
+        sqlSession.commit();
+        //关闭资源
+        sqlSession.close();
+    }
 }

@@ -2,7 +2,6 @@ select * from user where username like '%明%';
 select * from user where username like concat('%','明','%');
 
 select * from user where sex=1 and username like concat('%','明','%') and id in(15,20,25);
-
 select * from user where sex=1 and username like concat('%','明','%') and (id=15 or id=20 or id=25);
 
 -- 查询订单信息，关联查询创建订单的用户信息
@@ -14,6 +13,13 @@ where o.user_id = u.id;
 select o.* , d.id did , d.items_id ,d.items_num
 from orders o , orderdetail d
 where o.id = d.orders_id;
+
+-- 查询订单、订单明细的信息及下单的用户信息
+select o.*,
+d.id did , d.items_id ,d.items_num ,
+u.username , u.birthday , u.sex , u.address
+from orders o , user u , orderdetail d
+where o.user_id = u.id and o.id = d.orders_id ;
 
 -- 查询用户及用户购买商品信息
 select u.* ,

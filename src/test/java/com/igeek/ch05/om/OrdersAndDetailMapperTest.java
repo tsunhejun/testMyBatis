@@ -30,4 +30,15 @@ public class OrdersAndDetailMapperTest {
         }
         sqlSession.close();
     }
+
+    @Test
+    public void findList(){
+        SqlSession sqlSession = factory.openSession();
+        OrdersAndDetailMapper mapper = sqlSession.getMapper(OrdersAndDetailMapper.class);
+        List<OrdersCustom> list = mapper.findList();
+        for(OrdersCustom o : list){
+            System.out.println(o);
+        }
+        sqlSession.close();
+    }
 }
